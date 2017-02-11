@@ -1,0 +1,19 @@
+.centeralign{
+	text-align: center;
+}
+
+.fixedWithForNumbPanel{
+	width: 149px;
+}
+
+.dontPad{
+	padding: 0px;
+}
+
+.cellFormat{
+	font-family: monospace;
+}
+
+#numberdisplay{
+    text-align: right;
+}

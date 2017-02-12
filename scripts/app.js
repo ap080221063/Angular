@@ -18,4 +18,91 @@ angular.module('App', []).controller('Ctrl', function($scope) {
                           {row:4, char: '/'},
                           {row:4, char: '='}
     ];
+    $scope.panelNumber = 0;
+    $scope.memoryNumber = '';
+
+    $scope.memoryOperator = '';
+
+    $scope.writeToPanel = function(invar){
+        if(isNaN(invar)){ //operator
+            console.log(invar);
+            if(invar == '='){
+                if($scope.memoryOperator!=''){
+                    $scope.memoryNumber = isNaN($scope.memoryNumber)?0:$scope.memoryNumber;
+                    switch($scope.memoryOperator){
+                        case '+':
+                            var aux = $scope.panelNumber;
+                            $scope.panelNumber = Number($scope.memoryNumber) + Number(aux);
+                            $scope.memoryNumber = '';
+                            break;
+                        case '-':
+                            var aux = $scope.panelNumber;
+                            $scope.panelNumber = Number($scope.memoryNumber) - Number(aux);
+                            $scope.memoryNumber = '';
+                            break;
+                        case '*':
+                            var aux = $scope.panelNumber;
+                            $scope.panelNumber = Number($scope.memoryNumber) * Number(aux);
+                            $scope.memoryNumber = '';
+                            break;
+                        case '/':
+                            var aux = $scope.panelNumber;
+                            $scope.panelNumber = Number($scope.memoryNumber) / Number(aux);
+                            $scope.memoryNumber = '';
+                            break;
+                    }
+
+                    $scope.memoryOperator = '';
+                }else{
+                    $scope.memoryOperator = invar;
+                }
+            }else{
+                $scope.memoryOperator = invar;
+            }
+            //$scope.memoryOperator = invar;
+        }else{ //number
+            console.log(invar);
+
+                if($scope.panelNumber.length = 1 && $scope.panelNumber == "0"){
+                    $scope.panelNumber = invar;
+                }else{
+                    if($scope.memoryOperator != ''){
+                        if(isNaN($scope.memoryNumber)){
+                            $scope.panelNumber = $scope.panelNumber + '' + invar;
+                        }else{
+                            $scope.memoryNumber = $scope.panelNumber;
+                            $scope.panelNumber = invar;
+                        }
+                    }else{
+                        $scope.panelNumber = $scope.panelNumber + '' + invar;
+                    }
+
+
+                }
+        }
+    }
 });
+
+/*
+            if($scope.operator!=''){
+                switch($scope.operator){
+                    case '+':
+                        var aux = $scope.panelNumber;
+                        $scope.panelNumber = Number(aux) + Number(invar);
+                        break;
+                    case '-':
+                        var aux = $scope.panelNumber;
+                        $scope.panelNumber = Number(aux) - Number(invar);
+                        break;
+                    case '*':
+                        var aux = $scope.panelNumber;
+                        $scope.panelNumber = Number(aux) * Number(invar);
+                        break;
+                    case '/':
+                        var aux = $scope.panelNumber;
+                        $scope.panelNumber = Number(aux) / Number(invar);
+                        break;
+                }
+                $scope.operator = '';
+            }
+*/

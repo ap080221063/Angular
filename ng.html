@@ -18,16 +18,14 @@
 		  	<div class="row dontPad">
 		  		<div class="col-xs-4 dontPad">
 		  			<div class="col-xs-12 fixedWithForNumbPanel">
-		  			<input type="text" class="form-control input-sm cellFormat" id="numberdisplay">
+		  			<input type="text" class="form-control input-sm cellFormat" id="numberdisplay" ng-value="panelNumber">
 		  			</div>
 		  		</div>
 		  	</div>
 		  	<div class="row dontPad" ng-repeat="y in numbRows">
 		  		<div class="col-xs-4 dontPad">
                   <div class="col-xs-1 centeralign" ng-repeat="x in buttonArray" ng-if="x.row==y">
-                      <button type="button" class="btn btn-sm btn-default cellFormat">
-                          <span>{{x.char}}</span>
-                      </button>
+                      <input type="button" class="btn btn-sm btn-default cellFormat" ng-click="writeToPanel(x.char)" ng-value="x.char" />
                   </div>
                 </div>
 		  	</div>

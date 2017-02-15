@@ -12,8 +12,15 @@
 
 .cellFormat{
 	font-family: monospace;
+	margin-top: 1px;
 }
 
 #numberdisplay{
     text-align: right;
+}
+
+.cellSmallerFontSize{
+	font-size: 10px;
+	max-width: 28px;
+    min-height: 30px;
 }

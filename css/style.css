@@ -24,3 +24,7 @@
 	max-width: 28px;
     min-height: 30px;
 }
+
+.hide{
+	display: none;
+}

@@ -83,7 +83,10 @@ angular.module('App', []).controller('Ctrl', function($scope) {
 					}
 				}
 			}else{
-				if($scope.isNumber($scope.get(0))){ //if it is a number
+				if($scope.isNumber($scope.get(0)) && ($scope.get(0) == '0' || $scope.get(0) == 0)){ 
+				//if previouse is a 0, dont want to concat it
+					$scope.memory[0] = invar;
+				}else if($scope.isNumber($scope.get(0)) && ($scope.get(0) != '0' || $scope.get(0) != 0)){	
 					$scope.memory[0] = $scope.memory[0] + '' + invar;
 				}else{
 					$scope.pushInput(invar);

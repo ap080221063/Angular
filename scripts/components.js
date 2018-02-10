@@ -38,9 +38,6 @@ angular.module("components", [])
             $scope.datasource = ngservice.getData();
             $scope.make = true;
             $scope.model = true;
-            $scope.data = "";
-            //$http.get('data/MOCK_DATA.json').success(function (data){  $scope.data = data; });
-            debugger;
             $scope.gofetch = function(){
                                 $scope.datasource = ngservice.setFilter(ngservice.getData(), $scope.fetchValue, {"make":$scope.make, "model":$scope.model});
                              };

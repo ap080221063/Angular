@@ -28,3 +28,20 @@
 .hide{
 	display: none;
 }
+
+.toppadding{
+	padding-top: 20px;
+}
+
+.bottommargin{
+    margin-bottom: 20px;
+}
+
+.checkboxadjust{
+    padding-left: 25px;
+    padding-right: 10px;
+}
+
+.rowpadding{
+    padding-left: 15px;
+}

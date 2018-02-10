@@ -70,7 +70,11 @@ angular.module("components", [])
                                     }else if(options.make == true && options.model == false){
                                        return input.make.indexOf(fx.make) !== -1;
                                     }else{
-                                       return input.model.indexOf(fx.model) !== -1 || input.make.indexOf(fx.make) !== -1;
+                                        if(f.indexOf(" ") !== -1){
+                                            return (input.make + " " + input.model).indexOf(f) !== -1;
+                                        }else{
+                                            return input.model.indexOf(fx.model) !== -1 || input.make.indexOf(fx.make) !== -1;
+                                        }
                                     }
                                 }
                            );

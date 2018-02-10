@@ -1,6 +1,4 @@
 angular.module("components", [])
-
-
   .component("ngtable",{
       template:   "<div class="+'"container-fluid toppadding"'+">"+
                     "<div class="+'"row rowpadding"'+">"+
@@ -40,6 +38,9 @@ angular.module("components", [])
             $scope.datasource = ngservice.getData();
             $scope.make = true;
             $scope.model = true;
+            $scope.data = "";
+            //$http.get('data/MOCK_DATA.json').success(function (data){  $scope.data = data; });
+            debugger;
             $scope.gofetch = function(){
                                 $scope.datasource = ngservice.setFilter(ngservice.getData(), $scope.fetchValue, {"make":$scope.make, "model":$scope.model});
                              };
@@ -55,14 +56,7 @@ angular.module("components", [])
   })
 
   .service('ngservice', function() {
-
-    this.data = [
-                 { "make":"Ford"   ,  "model": "Mustang"  },
-                 { "make":"BMW"    ,  "model": "320"      },
-                 { "make":"Fiat"   ,  "model": "Stilo"    },
-                 { "make":"Ferrari",  "model": "Modena"   },
-                 { "make":"Seat"   ,  "model": "Ibiza"    },
-                ];
+    this.data = mock_data;
 
     this.getData = function(){
         return this.data;

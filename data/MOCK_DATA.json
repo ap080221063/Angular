@@ -1,4 +1,4 @@
-[{"make":"Chevrolet","model":"Camaro"},
+mock_data = [{"make":"Chevrolet","model":"Camaro"},
 {"make":"Buick","model":"Skyhawk"},
 {"make":"Pontiac","model":"Montana"},
 {"make":"Honda","model":"Prelude"},
@@ -997,4 +997,4 @@
 {"make":"Ford","model":"Fairlane"},
 {"make":"BMW","model":"M6"},
 {"make":"Toyota","model":"Previa"},
-{"make":"Jeep","model":"Liberty"}]
+{"make":"Jeep","model":"Liberty"}];

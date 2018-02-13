@@ -23,7 +23,7 @@ angular.module("components", [])
                             "</div>"+
                         "</div>" +
                     "</div>" +
-                    "<span class="+'"badge badge-dark mb-3"'+">Search results: <span class="+'"badge badge-success biggerFontSize"'+">{{totalSearchResults}}</span></span>" +
+                    "<span class="+'"badge badge-dark mb-3"'+">Search results: <span class="+'"badge badge-pill badge-success biggerFontSize"'+">{{totalSearchResults}}</span></span>" +
                     "<table class="+"table table-dark"+">" +
                         "<thead><tr>" +
                         "<th scope="+"col"+">Make</th>"+

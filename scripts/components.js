@@ -23,6 +23,7 @@ angular.module("components", [])
                             "</div>"+
                         "</div>" +
                     "</div>" +
+                    "<span class="+'"badge badge-dark mb-3"'+">Search results: <span class="+'"badge badge-success biggerFontSize"'+">{{totalSearchResults}}</span></span>" +
                     "<table class="+"table table-dark"+">" +
                         "<thead><tr>" +
                         "<th scope="+"col"+">Make</th>"+
@@ -40,6 +41,7 @@ angular.module("components", [])
             $scope.model = true;
             $scope.gofetch = function(){
                                 $scope.datasource = ngservice.setFilter(ngservice.getData(), $scope.fetchValue, {"make":$scope.make, "model":$scope.model});
+                                $scope.totalSearchResults = $scope.datasource.length;
                              };
             $scope.toggle = function(input){
                                 if(input=='make'){
@@ -49,6 +51,7 @@ angular.module("components", [])
                                 }
                              };
             $scope.fetchValue = "";
+            $scope.totalSearchResults = $scope.datasource.length;
         },
   })
 

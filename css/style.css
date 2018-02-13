@@ -45,3 +45,7 @@
 .rowpadding{
     padding-left: 15px;
 }
+
+.biggerFontSize{
+    font-size: 100% !important;
+}

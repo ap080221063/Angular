@@ -26,8 +26,12 @@ angular.module("components", [])
                     "<span class="+'"badge badge-dark mb-3"'+">Search results: <span class="+'"badge badge-pill badge-success biggerFontSize"'+">{{totalSearchResults}}</span></span>" +
                     "<table class="+"table table-dark"+">" +
                         "<thead><tr>" +
-                        "<th scope="+"col"+">Make</th>"+
-                        "<th scope="+"col"+">Model</th>"+
+                        "<th scope="+"col"+">Make <i class="+'"fa fa-chevron-up   fa-1"'+" aria-hidden="+'"true"'+" ng-show="+'"evalSort(mak,asc)"'+"></i> "+
+                                                 "<i class="+'"fa fa-chevron-down fa-1"'+" aria-hidden="+'"true"'+" ng-show="+'"evalSort(mak,desc)"'+"></i>"+
+                        "</th>"+
+                        "<th scope="+"col"+">Model <i class="+'"fa fa-chevron-up   fa-1"'+" aria-hidden="+'"true"'+" ng-show="+'"evalSort(mod,asc)"'+"></i>"+
+                                                  "<i class="+'"fa fa-chevron-down fa-1"'+" aria-hidden="+'"true"'+" ng-show="+'"evalSort(mod,desc)"'+"></i>"+
+                        "</th>"+
                         "</tr></thead>"+
                         "<tr ng-repeat='x in datasource track by $index '>"+
                           "<td>{{x.make}}</td>"+
@@ -36,22 +40,37 @@ angular.module("components", [])
                     "</table>"+
                   "</div>",
       controller : function($scope,ngservice){
-            $scope.datasource = ngservice.getData();
-            $scope.make = true;
-            $scope.model = true;
-            $scope.gofetch = function(){
-                                $scope.datasource = ngservice.setFilter(ngservice.getData(), $scope.fetchValue, {"make":$scope.make, "model":$scope.model});
-                                $scope.totalSearchResults = $scope.datasource.length;
-                             };
-            $scope.toggle = function(input){
-                                if(input=='make'){
-                                    $scope.make = !$scope.make;
-                                }else{
-                                    $scope.model = !$scope.model;
-                                }
-                             };
-            $scope.fetchValue = "";
+            $scope.datasource         = ngservice.getData();
+            $scope.make               = true;
+            $scope.model              = true;
+            $scope.fetchValue         = "";
             $scope.totalSearchResults = $scope.datasource.length;
+            $scope.datasourceSortWay  = "asc";
+            $scope.datasourceSortBy   = "make";
+
+            $scope.toggle = function(input){
+               if(input=='make'){
+                   $scope.make = !$scope.make;
+               }else{
+                   $scope.model = !$scope.model;
+               }
+            };
+
+            $scope.gofetch = function(){
+               $scope.datasource = ngservice.setFilter(ngservice.getData(), $scope.fetchValue, {"make":$scope.make, "model":$scope.model});
+               $scope.totalSearchResults = $scope.datasource.length;
+            };
+
+            $scope.setSort = function(prop, way){
+               $scope.datasourceSortWay  = way;
+               $scope.datasourceSortBy   = prop == "mak"?"make":"model";
+               $scope.datasource = ngservice.setSort($scope.datasource, $scope.datasourceSortBy, $scope.datasourceSortWay);
+            };
+
+            $scope.evalSort = function(prop, way){
+                return ($scope.datasourceSortBy == (prop == "mak"?"make":"model") && $scope.datasourceSortWay == way);
+            }
+
         },
   })
 
@@ -81,6 +100,14 @@ angular.module("components", [])
                                     }
                                 }
                            );
+        }
+    };
+
+    this.setSort = function(ds,prop,way) {
+        if(way=="desc"){
+            return (_.sortBy(ds, function(o) { return o.prop; })).reverse();
+        }else{
+            return _.sortBy(ds, function(o) { return o.prop; });
         }
     };
 

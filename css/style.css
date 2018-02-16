@@ -49,3 +49,7 @@
 .biggerFontSize{
     font-size: 100% !important;
 }
+
+.cursorIsPointer{
+    cursor: pointer;
+}

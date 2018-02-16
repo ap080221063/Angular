@@ -516,8 +516,9 @@ mock_data = [
 {"make":"Volkswagen","model":"Touareg"},
 {"make":"Volkswagen","model":"Type 2"},
 {"make":"Volkswagen","model":"rio"},
-{"make":"Volvo","model":"850"},
+{"make":"Volvo","model":"XC90"},
 {"make":"Volvo","model":"940"},
+{"make":"Volvo","model":"850"},
 {"make":"Volvo","model":"960"},
 {"make":"Volvo","model":"C30"},
 {"make":"Volvo","model":"C70"},
@@ -528,5 +529,4 @@ mock_data = [
 {"make":"Volvo","model":"V50"},
 {"make":"Volvo","model":"XC60"},
 {"make":"Volvo","model":"XC70"},
-{"make":"Volvo","model":"XC90"},
 ];

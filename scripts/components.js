@@ -26,11 +26,11 @@ angular.module("components", [])
                     "<span class="+'"badge badge-dark mb-3"'+">Search results: <span class="+'"badge badge-pill badge-success biggerFontSize"'+">{{totalSearchResults}}</span></span>" +
                     "<table class="+"table table-dark"+">" +
                         "<thead><tr>" +
-                        "<th scope="+"col"+">Make <i class="+'"fa fa-chevron-up   fa-1"'+" aria-hidden="+'"true"'+" ng-show="+'evalSort(sortOptions[2],sortOptions[0])'+" ng-click="+'setSort(sortOptions[2],sortOptions[1])'+"></i> " +
-                                                 "<i class="+'"fa fa-chevron-down fa-1"'+" aria-hidden="+'"true"'+" ng-show="+'evalSort(sortOptions[2],sortOptions[1])'+" ng-click="+'setSort(sortOptions[2],sortOptions[0])'+"></i> " +
+                        "<th scope="+"col"+">Make <i class="+'"fa fa-chevron-up   fa-1 cursorIsPointer"'+" aria-hidden="+'"true"'+" ng-show="+'evalSort(sortOptions[2],sortOptions[0])'+" ng-click="+'setSort(sortOptions[2],sortOptions[1])'+"></i> " +
+                                                 "<i class="+'"fa fa-chevron-down fa-1 cursorIsPointer"'+" aria-hidden="+'"true"'+" ng-show="+'evalSort(sortOptions[2],sortOptions[1])'+" ng-click="+'setSort(sortOptions[2],sortOptions[0])'+"></i> " +
                         "</th>"+
-                        "<th scope="+"col"+">Model <i class="+'"fa fa-chevron-up   fa-1"'+" aria-hidden="+'"true"'+" ng-show="+'evalSort(sortOptions[3],sortOptions[0])'+" ng-click="+'setSort(sortOptions[3],sortOptions[1])'+"></i> " +
-                                                  "<i class="+'"fa fa-chevron-down fa-1"'+" aria-hidden="+'"true"'+" ng-show="+'evalSort(sortOptions[3],sortOptions[1])'+" ng-click="+'setSort(sortOptions[3],sortOptions[0])'+"></i> " +
+                        "<th scope="+"col"+">Model <i class="+'"fa fa-chevron-up   fa-1 cursorIsPointer"'+" aria-hidden="+'"true"'+" ng-show="+'evalSort(sortOptions[3],sortOptions[0])'+" ng-click="+'setSort(sortOptions[3],sortOptions[1])'+"></i> " +
+                                                  "<i class="+'"fa fa-chevron-down fa-1 cursorIsPointer"'+" aria-hidden="+'"true"'+" ng-show="+'evalSort(sortOptions[3],sortOptions[1])'+" ng-click="+'setSort(sortOptions[3],sortOptions[0])'+"></i> " +
                         "</th>"+
                         "</tr></thead>"+
                         "<tr ng-repeat='x in datasource track by $index '>"+
@@ -113,12 +113,22 @@ angular.module("components", [])
         }
     };
 
-    this.setSort = function(ds,prop,way) {
-        if(way=="desc"){
-            return (_.sortBy(ds, function(o) { return o.prop; })).reverse();
-        }else{
-            return (_.sortBy(ds, function(o) { return o.prop; })).reverse();
-        }
+    this.setSort = function(ds,p,way) {
+
+        //data = (_.sortBy(ds, function(o) { return o.p; })).reverse();
+
+        var data = _.chain(ds)
+                    .sortBy(p)
+                    .value();
+
+        //if(way == 'desc'){
+        //    console.log(data.reverse())
+        //    return data.reverse();
+        //}else{
+        //    console.log(data);
+        //    return data;
+        //}
+        return data.reverse();
     };
 
 });

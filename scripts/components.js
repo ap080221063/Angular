@@ -46,7 +46,7 @@ angular.module("components", [])
             $scope.fetchValue         = "";
             $scope.totalSearchResults = $scope.datasource.length;
             $scope.sortOptions        = ['asc','desc','make','model'];
-            $scope.datasourceSortColumnsConfig = [{'property':'make','orderway':'asc'},{'property':'model','orderway':'asc'}];
+            $scope.datasourceSortColumnsConfig = [{'property':'make','orderway':'asc','prevorderway':'asc'},{'property':'model','orderway':'asc','prevorderway':'asc'}];
 
             $scope.toggle = function(input){
                if(input=='make'){
@@ -65,9 +65,9 @@ angular.module("components", [])
                 for(var i = 0; i<$scope.datasourceSortColumnsConfig.length; i++){
                     if($scope.datasourceSortColumnsConfig[i].property == prop){
 
-                        $scope.datasourceSortColumnsConfig[i].property = prop;
+                        $scope.datasourceSortColumnsConfig[i].prevorderway = $scope.datasourceSortColumnsConfig[i].orderway;
                         $scope.datasourceSortColumnsConfig[i].orderway = way;
-                        $scope.datasource = ngservice.setSort($scope.datasource, $scope.datasourceSortColumnsConfig[i].property, $scope.datasourceSortColumnsConfig[i].orderway);
+                        $scope.datasource = ngservice.setSort($scope.datasource, $scope.datasourceSortColumnsConfig[i], prop, $scope.datasourceSortColumnsConfig[i].orderway);
 
                     }
                 }
@@ -113,22 +113,21 @@ angular.module("components", [])
         }
     };
 
-    this.setSort = function(ds,p,way) {
+    this.setSort = function(ds,propArray, prop, way) {
 
-        //data = (_.sortBy(ds, function(o) { return o.p; })).reverse();
+        var data = ds;
 
-        var data = _.chain(ds)
-                    .sortBy(p)
-                    .value();
+            if(propArray.property == prop){
+                data = _.chain(ds)
+                .sortBy(propArray.property)
+                .value();
 
-        //if(way == 'desc'){
-        //    console.log(data.reverse())
-        //    return data.reverse();
-        //}else{
-        //    console.log(data);
-        //    return data;
-        //}
-        return data.reverse();
+                if(propArray.orderway != propArray.prevorderway && propArray.orderway == 'desc'){
+                    data = data.reverse();
+                }
+            }
+
+        return data;
     };
 
 });
